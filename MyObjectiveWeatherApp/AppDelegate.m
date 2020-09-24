@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "OWViewController.h"
+#import <TSMessage.h>
 
 @interface AppDelegate ()
 

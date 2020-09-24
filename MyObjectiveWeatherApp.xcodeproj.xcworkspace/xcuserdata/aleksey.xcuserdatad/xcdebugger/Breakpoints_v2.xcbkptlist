@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "EEF2677C-73B6-4394-A12D-513E2AAC2C6E"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C4E8EED3-BF81-4DC5-A988-A102ECA24968"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyObjectiveWeatherApp/Network/OWWeatherModel.h"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "temperature"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "C4E8EED3-BF81-4DC5-A988-A102ECA24968 - c532b20a2a391e67"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[OWWeatherModel temperature]"
+                  moduleName = "MyObjectiveWeatherApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleksey/MyObjectiveWeatherApp/MyObjectiveWeatherApp/Network/OWWeatherModel.h"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "C4E8EED3-BF81-4DC5-A988-A102ECA24968 - 7505c999403573b3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[OWWeatherModel setTemperature:]"
+                  moduleName = "MyObjectiveWeatherApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleksey/MyObjectiveWeatherApp/MyObjectiveWeatherApp/Network/OWWeatherModel.h"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "46">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "230D11CC-D7E2-40CF-A089-71E570E17098"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyObjectiveWeatherApp/Network/OWWeatherNetworkManager.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "-getWeather"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "230D11CC-D7E2-40CF-A089-71E570E17098 - b535bb757c271d5d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[OWWeatherNetworkManager getWeather]"
+                  moduleName = "MyObjectiveWeatherApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleksey/MyObjectiveWeatherApp/MyObjectiveWeatherApp/Network/OWWeatherNetworkManager.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "102">
+               </Location>
+               <Location
+                  uuid = "230D11CC-D7E2-40CF-A089-71E570E17098 - 3cf3fa1839854e4b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__37-[OWWeatherNetworkManager getWeather]_block_invoke"
+                  moduleName = "MyObjectiveWeatherApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleksey/MyObjectiveWeatherApp/MyObjectiveWeatherApp/Network/OWWeatherNetworkManager.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "109">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6ACFF9C2-AE3B-46BE-89C6-C517BA1F5D71"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyObjectiveWeatherApp/OWViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
