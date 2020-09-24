@@ -11,11 +11,9 @@
 
 @interface OWForecastModel : NSObject
 
-@property (nonatomic, strong) NSDictionary *forecast;
-@property (nonatomic, strong) NSArray *daily;
-@property (nonatomic, strong) NSArray *hourly;
-
 -(NSDictionary *) getDateForecast:(NSInteger) day;
 -(NSDictionary *) getTimeForecast:(NSInteger) hour;
+
+- (instancetype)initWithJSON:(NSDictionary*)json;
 
 @end

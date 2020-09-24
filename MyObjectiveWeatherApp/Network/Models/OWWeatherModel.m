@@ -10,21 +10,21 @@
 
 @implementation OWWeatherModel
 
-- (instancetype) init {
+- (instancetype)initWithJSON:(NSDictionary*)json {
     self = [super init];
-    if (self) { // доделать
-        NSDictionary *windDict = _weather[@"wind"];
-        _windSpeed = windDict[@"speed"];
+    if (self) {
+        NSDictionary *windDict = json[@"wind"];
+        self.windSpeed = windDict[@"speed"];
 
-        NSDictionary *mainDict = _weather[@"main"];
-        _temperature = mainDict[@"temp"];
-        _pressure = mainDict[@"pressure"];
+        NSDictionary *mainDict = json[@"main"];
+        self.temperature = mainDict[@"temp"];
+        self.pressure = mainDict[@"pressure"];
 
-        NSArray *weatherArray = _weather[@"weather"];
+        NSArray *weatherArray = json[@"weather"];
 
         for (NSDictionary *weatherDict in weatherArray) {
-            _icon = weatherDict[@"icon"];
-            _descript = weatherDict[@"description"];
+            self.iconURLString = weatherDict[@"icon"];
+            self.descript = weatherDict[@"description"];
         }
     }
     return self;
@@ -58,7 +58,7 @@
 }
 
 - (NSString *)imageName {
-    return [OWWeatherModel imageMap][self.icon];
+    return [OWWeatherModel imageMap][self.iconURLString];
 }
 
 @end

@@ -8,13 +8,20 @@
 
 #import "OWForecastModel.h"
 
+@interface OWForecastModel ()
+
+@property (nonatomic, strong) NSArray *daily;
+@property (nonatomic, strong) NSArray *hourly;
+
+@end
+
 @implementation OWForecastModel
 
-- (instancetype) init {
+- (instancetype)initWithJSON:(NSDictionary*)json {
     self = [super init];
     if (self) {
-        _daily = _forecast[@"daily"];
-        _hourly = _forecast[@"hourly"];
+        self.daily = json[@"daily"];
+        self.hourly = json[@"hourly"];
     }
     return self;
 }

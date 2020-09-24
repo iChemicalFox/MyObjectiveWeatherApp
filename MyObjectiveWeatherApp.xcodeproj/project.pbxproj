@@ -45,9 +45,10 @@
 		5B722EB424F6E67000800DE3 /* weather-tstorm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B722E9A24F6E67000800DE3 /* weather-tstorm@2x.png */; };
 		5B722EB824F6E76B00800DE3 /* Helsinki.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B722EB724F6E76B00800DE3 /* Helsinki.png */; };
 		5B722EBA24F6E82E00800DE3 /* Moscow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B722EB924F6E82E00800DE3 /* Moscow.png */; };
-		5B722ED224F8405D00800DE3 /* OWWeatherNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B722ED124F8405D00800DE3 /* OWWeatherNetworkManager.m */; };
+		5B722ED224F8405D00800DE3 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B722ED124F8405D00800DE3 /* APIManager.m */; };
 		5B722ED524F840CC00800DE3 /* OWWeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B722ED424F840CC00800DE3 /* OWWeatherModel.m */; };
 		5B722EDB2509653500800DE3 /* OWForecastModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B722EDA2509653500800DE3 /* OWForecastModel.m */; };
+		5BEC8ADB251D0C63002BBD11 /* NetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BEC8ADA251D0C63002BBD11 /* NetworkClient.m */; };
 		AF8B57320FEEB99988A5A5E3 /* Pods_MyObjectiveWeatherApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FBBCD8A09A91228E6B9847 /* Pods_MyObjectiveWeatherApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -119,12 +120,14 @@
 		5B722E9A24F6E67000800DE3 /* weather-tstorm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-tstorm@2x.png"; sourceTree = "<group>"; };
 		5B722EB724F6E76B00800DE3 /* Helsinki.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Helsinki.png; sourceTree = "<group>"; };
 		5B722EB924F6E82E00800DE3 /* Moscow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Moscow.png; sourceTree = "<group>"; };
-		5B722ED024F8405D00800DE3 /* OWWeatherNetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OWWeatherNetworkManager.h; sourceTree = "<group>"; };
-		5B722ED124F8405D00800DE3 /* OWWeatherNetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OWWeatherNetworkManager.m; sourceTree = "<group>"; };
+		5B722ED024F8405D00800DE3 /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		5B722ED124F8405D00800DE3 /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		5B722ED324F840CC00800DE3 /* OWWeatherModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OWWeatherModel.h; sourceTree = "<group>"; };
 		5B722ED424F840CC00800DE3 /* OWWeatherModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OWWeatherModel.m; sourceTree = "<group>"; };
 		5B722ED92509653500800DE3 /* OWForecastModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OWForecastModel.h; sourceTree = "<group>"; };
 		5B722EDA2509653500800DE3 /* OWForecastModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OWForecastModel.m; sourceTree = "<group>"; };
+		5BEC8AD9251D0C63002BBD11 /* NetworkClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkClient.h; sourceTree = "<group>"; };
+		5BEC8ADA251D0C63002BBD11 /* NetworkClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkClient.m; sourceTree = "<group>"; };
 		9652EFA748804154E7E3D7A0 /* Pods-MyObjectiveWeatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyObjectiveWeatherApp.release.xcconfig"; path = "Target Support Files/Pods-MyObjectiveWeatherApp/Pods-MyObjectiveWeatherApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -270,12 +273,38 @@
 		5B722EC924F83F5000800DE3 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				5B722ED024F8405D00800DE3 /* OWWeatherNetworkManager.h */,
-				5B722ED124F8405D00800DE3 /* OWWeatherNetworkManager.m */,
+				5BEC8AD8251D0C4F002BBD11 /* Network */,
+				5BEC8AD7251D0C47002BBD11 /* API */,
+				5BEC8AD6251D0C3E002BBD11 /* Models */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		5BEC8AD6251D0C3E002BBD11 /* Models */ = {
+			isa = PBXGroup;
+			children = (
 				5B722ED324F840CC00800DE3 /* OWWeatherModel.h */,
 				5B722ED424F840CC00800DE3 /* OWWeatherModel.m */,
 				5B722ED92509653500800DE3 /* OWForecastModel.h */,
 				5B722EDA2509653500800DE3 /* OWForecastModel.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5BEC8AD7251D0C47002BBD11 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				5B722ED024F8405D00800DE3 /* APIManager.h */,
+				5B722ED124F8405D00800DE3 /* APIManager.m */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		5BEC8AD8251D0C4F002BBD11 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				5BEC8AD9251D0C63002BBD11 /* NetworkClient.h */,
+				5BEC8ADA251D0C63002BBD11 /* NetworkClient.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -503,10 +532,11 @@
 				5B722ED524F840CC00800DE3 /* OWWeatherModel.m in Sources */,
 				5B722E1324F6A24D00800DE3 /* OWViewController.m in Sources */,
 				5B722E7A24F6AF8900800DE3 /* UIImageView+LBBlurredImage.m in Sources */,
+				5BEC8ADB251D0C63002BBD11 /* NetworkClient.m in Sources */,
 				5B722E0D24F6A24D00800DE3 /* AppDelegate.m in Sources */,
 				5B722EDB2509653500800DE3 /* OWForecastModel.m in Sources */,
 				5B722E1024F6A24D00800DE3 /* SceneDelegate.m in Sources */,
-				5B722ED224F8405D00800DE3 /* OWWeatherNetworkManager.m in Sources */,
+				5B722ED224F8405D00800DE3 /* APIManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

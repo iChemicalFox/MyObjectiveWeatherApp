@@ -12,27 +12,28 @@
 		05801F78399DF28F19D731219BE83AA4 /* TSMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = DBE94AB30787DF323DB2C291F7BA45A3 /* TSMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		10D4EB1B857AC76C03EC35E85721255C /* NotificationBackgroundMessage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 105E3BA99EFD0067912F7D2CE5372271 /* NotificationBackgroundMessage@2x.png */; };
 		156522FE7F5D2BEF6978240D69A9FAD4 /* TSMessageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 707A9B171919F7CC1E72B3D89F4599E5 /* TSMessageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		24D00BDFD0C435D16A3220A1990738FD /* TSMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A82DB9F1D42DFAD49FFAFAE47E5A872D /* TSMessageView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		2A5A41F48B537FB394FDE4AA86BA9932 /* NotificationBackgroundSuccess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 413C20A916DA42E8F1ECB055DC3C4771 /* NotificationBackgroundSuccess@2x.png */; };
-		36CA5E838285B8476836DAF8FE7B4A9F /* HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = C4179A8D5DDDFD3EFFB45C076A7D745D /* HexColor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		376B52B21FBA5C811E6C894032445D06 /* NotificationBackgroundWarningIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 624A5ED6B194D5C46531CE9648C03533 /* NotificationBackgroundWarningIcon.png */; };
 		3818316EC2E1070FA610241C90523BE4 /* NotificationBackgroundWarning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7425732395C4DAEA6418B33FBC8455A1 /* NotificationBackgroundWarning@2x.png */; };
 		4181E868E90B7B78EF4E023CF0A01DE1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E881DBDC49C2885F91A53BEC67D192C7 /* Foundation.framework */; };
 		5B0A84238AED8AD0AC613D190D6A2BC1 /* NotificationBackgroundWarning.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2CD467058FE1D3C42185DD3E751321 /* NotificationBackgroundWarning.png */; };
 		69179C88FB6725345A28C7100CBDCD34 /* NotificationBackgroundMessage.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A2218D058A710E2EA646C7621E1D60E /* NotificationBackgroundMessage.png */; };
+		6A9FF7BFB37A5506EA71E14625CA1867 /* TSBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6BF082B7AE587CC2BF58AC6503E226 /* TSBlurView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		6FD2E09FF8F0ED3E8DDF4B62FE5CCAA4 /* TSMessages-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 800297B0D133DA22E7DBF5B0435F435B /* TSMessages-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		76438016031E414754E5DEFFD48C6D0F /* TSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB0D12A5EE9F4D45F18C7F889C10B /* TSMessage.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		78070B84FBEE1645594A6B6E6B701637 /* NotificationBackgroundErrorIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BE9B51F9358DCD08390C35B03D76CBA /* NotificationBackgroundErrorIcon.png */; };
 		784EF774CAD79276526D74A0791E1B93 /* NotificationBackgroundWarningIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4908DAB5F582CA1BE4E55E21379C3B7A /* NotificationBackgroundWarningIcon@2x.png */; };
 		7EF814622AFC9E926413DDB052E1D808 /* NotificationButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A89380EE69D43357448E5082F7ED2C1 /* NotificationButtonBackground.png */; };
 		8E628B424D08C787AD5E3E723FF2D898 /* Pods-MyObjectiveWeatherApp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D5850F555677B50F86CD566705AC4FBD /* Pods-MyObjectiveWeatherApp-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		93C148FA6378D27F7A6505D097C76F50 /* TSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB0D12A5EE9F4D45F18C7F889C10B /* TSMessage.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		963D9160EF1E3860F32C62E5D14AD140 /* HexColors-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D0ABBDD489C0DFCC84532F5ED1CB24EC /* HexColors-dummy.m */; };
 		969A55A64C9AB2A2EA0815AD472991A7 /* NotificationBackgroundError.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F4EFDB126A3DC5279E07FE2826818D /* NotificationBackgroundError.png */; };
 		9D347F0BCC95645F29FB2F3BCFF234C3 /* NotificationBackgroundSuccessIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 95386FCA14E8A8074C3FDDF465A9A0BB /* NotificationBackgroundSuccessIcon.png */; };
+		9F2E4FDD6B105F1DC1451EB71D7A0ACC /* TSMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A82DB9F1D42DFAD49FFAFAE47E5A872D /* TSMessageView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		A2986941A15775F97BACE97189413B79 /* TSMessagesDefaultDesign.json in Resources */ = {isa = PBXBuildFile; fileRef = 29731865A37D6728AF082A48A580F7E2 /* TSMessagesDefaultDesign.json */; };
 		A69AA9496919F86D07D5538E70976325 /* HexColors-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6444CE4DD8CB1038C0D8E456D4AB6F83 /* HexColors-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C0BBE176E8576BF96237C75BC45BDB10 /* Pods-MyObjectiveWeatherApp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C59D788B6A1DD5E6F0A8E14E7ADAFD /* Pods-MyObjectiveWeatherApp-dummy.m */; };
 		C4C2A04526815096F9F09E07A6803132 /* NotificationBackgroundErrorIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FAB653CF5B3C0E6A1860B6CBD94B12F /* NotificationBackgroundErrorIcon@2x.png */; };
+		CE379059128F53FF9FB606EDE215A7B2 /* HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = C4179A8D5DDDFD3EFFB45C076A7D745D /* HexColor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D16A9AEEE9413A875529826488865DF3 /* TSBlurView.h in Headers */ = {isa = PBXBuildFile; fileRef = A89E48C23A794FC259634A5E36D7C564 /* TSBlurView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D40B8720E030D06155110713A3D17981 /* NotificationButtonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B4CE87BD028167243BF96AA4FF45545 /* NotificationButtonBackground@2x.png */; };
 		D53314FDBFBF5D1D2D55865C8F5C82D6 /* HexColors.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FDDDD94243FD4CCF0281C0D3E130C4D /* HexColors.framework */; };
@@ -40,7 +41,6 @@
 		DD0E9F9A65FD9F0998E3E3466FFE2CF5 /* NotificationBackgroundError@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15EFB0725BBCC89D2FD572AD140D21C1 /* NotificationBackgroundError@2x.png */; };
 		E09F96D489BFD5E2296D8FFE1940296A /* HexColor.h in Headers */ = {isa = PBXBuildFile; fileRef = B85C081883B6B7668B49B63EAC91B3EB /* HexColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E4DD117796ED3D1AE117B5063F0A2E32 /* TSMessages-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5ADB913FD8BF9ED7656B9F0DF189CA /* TSMessages-dummy.m */; };
-		EE9C5B9E09D6E6CE3D663439248F3C48 /* TSBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6BF082B7AE587CC2BF58AC6503E226 /* TSBlurView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		F0B46C55C436284404EC9CEC700471E6 /* NotificationBackgroundSuccessIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ACF3E96C1801E7EA2B9FEC11465CEA8 /* NotificationBackgroundSuccessIcon@2x.png */; };
 /* End PBXBuildFile section */
 
@@ -473,10 +473,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE9C5B9E09D6E6CE3D663439248F3C48 /* TSBlurView.m in Sources */,
-				76438016031E414754E5DEFFD48C6D0F /* TSMessage.m in Sources */,
+				6A9FF7BFB37A5506EA71E14625CA1867 /* TSBlurView.m in Sources */,
+				93C148FA6378D27F7A6505D097C76F50 /* TSMessage.m in Sources */,
 				E4DD117796ED3D1AE117B5063F0A2E32 /* TSMessages-dummy.m in Sources */,
-				24D00BDFD0C435D16A3220A1990738FD /* TSMessageView.m in Sources */,
+				9F2E4FDD6B105F1DC1451EB71D7A0ACC /* TSMessageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,7 +484,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36CA5E838285B8476836DAF8FE7B4A9F /* HexColor.m in Sources */,
+				CE379059128F53FF9FB606EDE215A7B2 /* HexColor.m in Sources */,
 				963D9160EF1E3860F32C62E5D14AD140 /* HexColors-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

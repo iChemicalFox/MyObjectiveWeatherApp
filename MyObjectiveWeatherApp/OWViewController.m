@@ -9,7 +9,7 @@
 #import "OWViewController.h"
 #import "UIImageView+LBBlurredImage.h"
 #import "OWWeatherModel.h"
-#import "OWWeatherNetworkManager.h"
+#import "APIManager.h"
 
 @interface OWViewController ()
 
@@ -17,15 +17,18 @@
 @property (nonatomic, strong) UIImageView *blurredImageView;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, assign) CGFloat screenHeight;
+@property (nonatomic, strong) APIManager* apiManager;
 
 @end
 
 @implementation OWViewController
 
--(void)loadView {
-    [super loadView];
-    
-    [[OWWeatherNetworkManager alloc] getWeather];
+- (nullable instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    if (self) {
+        self.apiManager = [[APIManager alloc] initWithJSON:[NetworkClient alloc]];
+    }
+    return self;
 }
 
 - (void)viewDidLoad {
@@ -108,7 +111,7 @@
 
     UILabel *conditionsLabel = [[UILabel alloc] initWithFrame:conditionsFrame];
     conditionsLabel.backgroundColor = [UIColor clearColor];
-    conditionsLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+    conditionsLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20]; // TODO: rework with [UIFont systemFontOfSize:(CGFloat) weight:(UIFontWeight)] for all fonts
     conditionsLabel.textColor = [UIColor whiteColor];
     conditionsLabel.text = @"test";
     [header addSubview:conditionsLabel];
@@ -118,6 +121,14 @@
     iconView.backgroundColor = [UIColor clearColor];
     iconView.image = [UIImage imageNamed:@"weather-tstorm"];
     [header addSubview:iconView];
+    // [iconView.leadingAnchor constraintEqualToAnchor:header constant:20].active = YES; // Just example
+    
+    [self.apiManager getWeatherWithCompletionHandler:^(OWWeatherModel * _Nonnull weather) {
+        conditionsLabel.text = weather.descript;
+        iconView.image = [UIImage imageNamed:weather.imageName];
+        temperatureLabel.text = [NSString stringWithFormat:@"%ld°", weather.temperature.integerValue - 271]; // TODO: сковертировать кельвины в цельсии. Обратить внимание на возможные отрицательные значения
+        hiloLabel.text = [NSString stringWithFormat:@"wind speed %ldms / pressure %ldp", weather.windSpeed.integerValue, weather.pressure.integerValue];
+    }];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
