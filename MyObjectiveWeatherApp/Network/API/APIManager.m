@@ -36,9 +36,10 @@
     }];
 }
 
-- (void)getForecastWithCompletionHandler:(void (^)(OWForecastModel * _Nonnull weather))completionHandler {
+- (void)getForecastWithCompletionHandler:(void (^)(OWForecastModel * _Nonnull forecast))completionHandler {
     NSString *urlString = [NSString stringWithFormat:@"https://api.openweathermap.org/data/2.5/onecall?lat=59.441792&lon=30.337689&exclude=houtly&appid=9934278765103a1603d5ae8bfa6d3e91"/*, lat, lon*/];
     NSURL *forecactURL = [NSURL URLWithString:urlString];
+    NSLog(@"aiaiaia");
     
     [self.networkClient getWithURL:forecactURL onSuccess:^(NSDictionary * _Nonnull jsonResponse) {
         OWForecastModel *forecastModel = [[OWForecastModel alloc] initWithJSON:jsonResponse];

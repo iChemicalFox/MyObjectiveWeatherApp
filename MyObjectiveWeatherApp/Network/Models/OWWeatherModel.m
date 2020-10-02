@@ -24,7 +24,7 @@
 
         for (NSDictionary *weatherDict in weatherArray) {
             self.iconURLString = weatherDict[@"icon"];
-            self.descript = weatherDict[@"description"];
+            self.conditions = weatherDict[@"description"];
         }
     }
     return self;

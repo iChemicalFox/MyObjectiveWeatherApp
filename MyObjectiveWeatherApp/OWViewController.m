@@ -16,8 +16,8 @@
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 @property (nonatomic, strong) UIImageView *blurredImageView;
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, assign) CGFloat screenHeight;
-@property (nonatomic, strong) APIManager* apiManager;
+@property (nonatomic, strong) APIManager *apiManager;
+@property (nonatomic, strong) UIView *header;
 
 @end
 
@@ -33,8 +33,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.screenHeight = [UIScreen mainScreen].bounds.size.height;
 
     UIImage *backgroundImage = [UIImage imageNamed:@"SaintPetersburg"];
 
@@ -55,79 +53,95 @@
     self.tableView.separatorColor = [UIColor colorWithWhite:1 alpha:0.2];
     self.tableView.pagingEnabled = YES;
     [self.view addSubview:self.tableView];
+    self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
+    [NSLayoutConstraint activateConstraints:@[
+        [self.tableView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor],
+        [self.tableView.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor],
+        [self.tableView.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor],
+        [self.tableView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor]
+    ]];
+    
+    /*
+     1. Несколько методов, в каждый из которых установить необходимый параметер
+     2. Сделать метод configureWithWeather:(OWWeatherModel*)weather;
+     
+     */
 
-    CGRect headerFrame = [UIScreen mainScreen].bounds;
-    CGFloat inset = 20;
-    CGFloat temperatureHeight = 110;
-    CGFloat hiloHeight = 50;
-    CGFloat iconHeight = 35;
-    CGFloat indent = 75;
+    float temperatureLabelSize = 100;
+    float textInfoSize = 20;
+    float leftIndent = 20;
 
-    CGRect hiloFrame = CGRectMake(inset,
-                                  headerFrame.size.height - (hiloHeight + indent),
-                                  headerFrame.size.width - (2 * inset),
-                                  hiloHeight);
+    self.header = [[UIView alloc] initWithFrame:CGRectZero];
+    self.header.backgroundColor = [UIColor clearColor];
+    self.tableView.tableHeaderView = self.header;
 
-    CGRect temperatureFrame = CGRectMake(inset,
-                                         headerFrame.size.height - (temperatureHeight + hiloHeight + indent),
-                                         headerFrame.size.width - (2 * inset),
-                                         temperatureHeight);
-
-    CGRect iconFrame = CGRectMake(inset,
-                                  temperatureFrame.origin.y - iconHeight,
-                                  iconHeight,
-                                  iconHeight);
-
-    CGRect conditionsFrame = iconFrame;
-    conditionsFrame.size.width = self.view.bounds.size.width - (((2 * inset) + iconHeight) + 10);
-    conditionsFrame.origin.x = iconFrame.origin.x + (iconHeight + 10);
-
-
-    UIView *header = [[UIView alloc] initWithFrame:headerFrame];
-    header.backgroundColor = [UIColor clearColor];
-    self.tableView.tableHeaderView = header;
-
-    UILabel *temperatureLabel = [[UILabel alloc] initWithFrame:temperatureFrame];
-    temperatureLabel.backgroundColor = [UIColor clearColor];
-    temperatureLabel.textColor = [UIColor whiteColor];
-    temperatureLabel.text = @"0°";
-    temperatureLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:120];
-    [header addSubview:temperatureLabel];
-
-    UILabel *hiloLabel = [[UILabel alloc] initWithFrame:hiloFrame];
-    hiloLabel.backgroundColor = [UIColor clearColor];
-    hiloLabel.textColor = [UIColor whiteColor];
-    hiloLabel.text = @"wind speed 0ms / pressure 0p";
-    hiloLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
-    [header addSubview:hiloLabel];
-
-    UILabel *cityLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, self.view.bounds.size.width, 30)];
+    UILabel *cityLabel = [[UILabel alloc] init];
     cityLabel.backgroundColor = [UIColor clearColor];
     cityLabel.textColor = [UIColor whiteColor];
     cityLabel.text = @"Saint-Petersburg";
-    cityLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+    cityLabel.font = [UIFont systemFontOfSize:textInfoSize weight:UIFontWeightLight];
     cityLabel.textAlignment = NSTextAlignmentCenter;
-    [header addSubview:cityLabel];
+    [self.header addSubview:cityLabel];
+    cityLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [NSLayoutConstraint activateConstraints:@[
+        [cityLabel.topAnchor constraintEqualToAnchor:self.header.topAnchor constant:20],
+        [cityLabel.leadingAnchor constraintEqualToAnchor:self.header.safeAreaLayoutGuide.leadingAnchor],
+        [cityLabel.trailingAnchor constraintEqualToAnchor:self.header.safeAreaLayoutGuide.trailingAnchor]
+    ]];
 
-    UILabel *conditionsLabel = [[UILabel alloc] initWithFrame:conditionsFrame];
+    UILabel *windAndPressureLabel = [[UILabel alloc] init];
+    windAndPressureLabel.backgroundColor = [UIColor clearColor];
+    windAndPressureLabel.textColor = [UIColor whiteColor];
+    windAndPressureLabel.text = @"wind speed 0 ms / pressure 0 hPa";
+    windAndPressureLabel.font = [UIFont systemFontOfSize:textInfoSize weight:UIFontWeightLight];
+    [self.header addSubview:windAndPressureLabel];
+    windAndPressureLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [NSLayoutConstraint activateConstraints:@[
+        [windAndPressureLabel.bottomAnchor constraintEqualToAnchor:self.header.safeAreaLayoutGuide.bottomAnchor constant:-30],
+        [windAndPressureLabel.leadingAnchor constraintEqualToAnchor:self.header.leadingAnchor constant:20],
+        [windAndPressureLabel.trailingAnchor constraintLessThanOrEqualToAnchor:self.header.trailingAnchor constant:-20]
+    ]];
+
+    UILabel *temperatureLabel = [[UILabel alloc] init];
+    temperatureLabel.backgroundColor = [UIColor clearColor];
+    temperatureLabel.textColor = [UIColor whiteColor];
+    temperatureLabel.text = @"0°";
+    temperatureLabel.font = [UIFont systemFontOfSize:temperatureLabelSize weight:UIFontWeightUltraLight];
+    [self.header addSubview:temperatureLabel];
+    temperatureLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [NSLayoutConstraint activateConstraints:@[
+        [temperatureLabel.topAnchor constraintEqualToAnchor:windAndPressureLabel.topAnchor constant:-20-temperatureLabelSize],
+        [temperatureLabel.leftAnchor constraintEqualToAnchor:self.header.leftAnchor constant:leftIndent]
+    ]];
+
+    UILabel *conditionsLabel = [[UILabel alloc] init];
     conditionsLabel.backgroundColor = [UIColor clearColor];
-    conditionsLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20]; // TODO: rework with [UIFont systemFontOfSize:(CGFloat) weight:(UIFontWeight)] for all fonts
+    conditionsLabel.font = [UIFont systemFontOfSize:textInfoSize weight:UIFontWeightLight];
     conditionsLabel.textColor = [UIColor whiteColor];
-    conditionsLabel.text = @"test";
-    [header addSubview:conditionsLabel];
+    conditionsLabel.text = @"waiting for condition";
+    [self.header addSubview:conditionsLabel];
+    conditionsLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [NSLayoutConstraint activateConstraints:@[
+        [conditionsLabel.topAnchor constraintEqualToAnchor:windAndPressureLabel.topAnchor constant:-140],
+        [conditionsLabel.leftAnchor constraintEqualToAnchor:self.header.leftAnchor constant:60]
+    ]];
 
-    UIImageView *iconView = [[UIImageView alloc] initWithFrame:iconFrame];
+    UIImageView *iconView = [[UIImageView alloc] init];
     iconView.contentMode = UIViewContentModeScaleAspectFit;
     iconView.backgroundColor = [UIColor clearColor];
-    iconView.image = [UIImage imageNamed:@"weather-tstorm"];
-    [header addSubview:iconView];
-    // [iconView.leadingAnchor constraintEqualToAnchor:header constant:20].active = YES; // Just example
+    iconView.image = [UIImage imageNamed:@"loading"];
+    [self.header addSubview:iconView];
+    iconView.translatesAutoresizingMaskIntoConstraints = NO;
+    [NSLayoutConstraint activateConstraints:@[
+        [iconView.leftAnchor constraintEqualToAnchor:self.header.leftAnchor constant:leftIndent],
+        [iconView.topAnchor constraintEqualToAnchor:conditionsLabel.topAnchor constant:-5]
+    ]];
     
     [self.apiManager getWeatherWithCompletionHandler:^(OWWeatherModel * _Nonnull weather) {
-        conditionsLabel.text = weather.descript;
+        conditionsLabel.text = weather.conditions;
         iconView.image = [UIImage imageNamed:weather.imageName];
-        temperatureLabel.text = [NSString stringWithFormat:@"%ld°", weather.temperature.integerValue - 271]; // TODO: сковертировать кельвины в цельсии. Обратить внимание на возможные отрицательные значения
-        hiloLabel.text = [NSString stringWithFormat:@"wind speed %ldms / pressure %ldp", weather.windSpeed.integerValue, weather.pressure.integerValue];
+        temperatureLabel.text = [NSString stringWithFormat:@"%ld°", weather.temperature.integerValue - 271];
+        windAndPressureLabel.text = [NSString stringWithFormat:@"wind speed %ld ms / pressure %ld hP", weather.windSpeed.integerValue, weather.pressure.integerValue];
     }];
 }
 
@@ -158,16 +172,37 @@
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.detailTextLabel.textColor = [UIColor whiteColor];
 
-// ячеечки надо доделать
+    if (indexPath.section == 0) { // есть баги
+        if (indexPath.row == 0) {
+            [self configureHeaderCell:cell title:@"Hourly Forecast"];
+        } else {
+            // configurateHourlyCell
+        }
+    }
+    
+    else if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            [self configureHeaderCell:cell title:@"Daily Forecast"];
+        } else {
+        // configurateDailyCell
+        }
+    }
 
     return cell;
+}
+
+- (void)configureHeaderCell:(UITableViewCell *)cell title:(NSString *)title {
+    cell.textLabel.font = [UIFont systemFontOfSize:20 weight:UIFontWeightLight];
+    cell.textLabel.text = title;
+    cell.detailTextLabel.text = @"";
+    cell.imageView.image = nil;
 }
 
 // надо подумать как растянуть ячейки на весь экран. 7 для прогноза по часам и 7 для прогноза по дням
 
 #pragma mark - UITableViewDelegate
 
-- (void)viewWillLayoutSubviews {
+- (void)viewDidLayoutSubviews {
     [super viewWillLayoutSubviews];
 
     CGRect bounds = self.view.bounds;
@@ -175,6 +210,7 @@
     self.backgroundImageView.frame = bounds;
     self.blurredImageView.frame = bounds;
     self.tableView.frame = bounds;
+    self.header.frame = CGRectMake(0, 0, CGRectGetWidth(bounds), CGRectGetHeight(bounds) - self.view.safeAreaInsets.bottom);
 }
 
 // test

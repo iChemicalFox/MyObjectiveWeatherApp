@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B1A3C9225226FFA00F68487 /* loading@x2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B1A3C9025226FFA00F68487 /* loading@x2.png */; };
+		5B1A3C9325226FFA00F68487 /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B1A3C9125226FFA00F68487 /* loading.png */; };
+		5B1A3C962524B93400F68487 /* OWHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1A3C952524B93400F68487 /* OWHeaderViewController.m */; };
 		5B722E0D24F6A24D00800DE3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B722E0C24F6A24D00800DE3 /* AppDelegate.m */; };
 		5B722E1024F6A24D00800DE3 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B722E0F24F6A24D00800DE3 /* SceneDelegate.m */; };
 		5B722E1324F6A24D00800DE3 /* OWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B722E1224F6A24D00800DE3 /* OWViewController.m */; };
@@ -72,6 +75,10 @@
 /* Begin PBXFileReference section */
 		194D965B42914579B77023A7 /* Pods-MyObjectiveWeatherApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyObjectiveWeatherApp.debug.xcconfig"; path = "Target Support Files/Pods-MyObjectiveWeatherApp/Pods-MyObjectiveWeatherApp.debug.xcconfig"; sourceTree = "<group>"; };
 		50FBBCD8A09A91228E6B9847 /* Pods_MyObjectiveWeatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyObjectiveWeatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B1A3C9025226FFA00F68487 /* loading@x2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading@x2.png"; sourceTree = "<group>"; };
+		5B1A3C9125226FFA00F68487 /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
+		5B1A3C942524B93400F68487 /* OWHeaderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OWHeaderViewController.h; sourceTree = "<group>"; };
+		5B1A3C952524B93400F68487 /* OWHeaderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OWHeaderViewController.m; sourceTree = "<group>"; };
 		5B722E0824F6A24D00800DE3 /* MyObjectiveWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyObjectiveWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B722E0B24F6A24D00800DE3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5B722E0C24F6A24D00800DE3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -188,6 +195,8 @@
 				5B722E0F24F6A24D00800DE3 /* SceneDelegate.m */,
 				5B722E1124F6A24D00800DE3 /* OWViewController.h */,
 				5B722E1224F6A24D00800DE3 /* OWViewController.m */,
+				5B1A3C942524B93400F68487 /* OWHeaderViewController.h */,
+				5B1A3C952524B93400F68487 /* OWHeaderViewController.m */,
 				5B722EC924F83F5000800DE3 /* Network */,
 				5B722E7F24F6E67000800DE3 /* Images */,
 				5B722E7724F6AF0B00800DE3 /* ImageLibs */,
@@ -266,6 +275,8 @@
 				5B722E9824F6E67000800DE3 /* weather-scattered@2x.png */,
 				5B722E9924F6E67000800DE3 /* weather-moon@2x.png */,
 				5B722E9A24F6E67000800DE3 /* weather-tstorm@2x.png */,
+				5B1A3C9125226FFA00F68487 /* loading.png */,
+				5B1A3C9025226FFA00F68487 /* loading@x2.png */,
 			);
 			path = "Weather Icons";
 			sourceTree = "<group>";
@@ -435,6 +446,7 @@
 				5B722E1E24F6A24E00800DE3 /* LaunchScreen.storyboard in Resources */,
 				5B722EA324F6E67000800DE3 /* weather-clear@2x.png in Resources */,
 				5B722E9D24F6E67000800DE3 /* weather-tstorm.png in Resources */,
+				5B1A3C9225226FFA00F68487 /* loading@x2.png in Resources */,
 				5B722EB824F6E76B00800DE3 /* Helsinki.png in Resources */,
 				5B722EAB24F6E67000800DE3 /* weather-few-night@2x.png in Resources */,
 				5B722EA124F6E67000800DE3 /* weather-rain.png in Resources */,
@@ -458,6 +470,7 @@
 				5B722E9C24F6E67000800DE3 /* SaintPetersburg.png in Resources */,
 				5B722EA924F6E67000800DE3 /* weather-broken@2x.png in Resources */,
 				5B722EA024F6E67000800DE3 /* weather-shower@2x.png in Resources */,
+				5B1A3C9325226FFA00F68487 /* loading.png in Resources */,
 				5B722E9F24F6E67000800DE3 /* weather-rain-night.png in Resources */,
 				5B722EB324F6E67000800DE3 /* weather-moon@2x.png in Resources */,
 				5B722EB124F6E67000800DE3 /* weather-rain@2x.png in Resources */,
@@ -531,6 +544,7 @@
 				5B722E1924F6A24D00800DE3 /* MyObjectiveWeatherApp.xcdatamodeld in Sources */,
 				5B722ED524F840CC00800DE3 /* OWWeatherModel.m in Sources */,
 				5B722E1324F6A24D00800DE3 /* OWViewController.m in Sources */,
+				5B1A3C962524B93400F68487 /* OWHeaderViewController.m in Sources */,
 				5B722E7A24F6AF8900800DE3 /* UIImageView+LBBlurredImage.m in Sources */,
 				5BEC8ADB251D0C63002BBD11 /* NetworkClient.m in Sources */,
 				5B722E0D24F6A24D00800DE3 /* AppDelegate.m in Sources */,

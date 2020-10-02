@@ -26,7 +26,7 @@
     return self;
 }
 
--(NSDictionary *) getDateForecast:(NSInteger) day {
+-(NSDictionary *) getDateForecast:(long)day {
     NSMutableDictionary *forecastDict = [[NSMutableDictionary alloc] init];
 
     NSDictionary *dayForecast = _daily[day];
@@ -55,7 +55,7 @@
     return forecastDict;
 }
 
--(NSDictionary *) getTimeForecast:(NSInteger) hour {
+-(NSDictionary *) getTimeForecast:(long)hour {
     NSMutableDictionary *forecastDict = [[NSMutableDictionary alloc] init];
 
     NSArray *hourly = _hourly[hour];
