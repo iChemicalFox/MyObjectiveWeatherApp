@@ -98,7 +98,7 @@
     windAndPressureLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
         [windAndPressureLabel.bottomAnchor constraintEqualToAnchor:self.header.safeAreaLayoutGuide.bottomAnchor constant:-30],
-        [windAndPressureLabel.leadingAnchor constraintEqualToAnchor:self.header.leadingAnchor constant:20],
+        [windAndPressureLabel.leadingAnchor constraintEqualToAnchor:self.header.safeAreaLayoutGuide.leadingAnchor constant:leftIndent],
         [windAndPressureLabel.trailingAnchor constraintLessThanOrEqualToAnchor:self.header.trailingAnchor constant:-20]
     ]];
 
@@ -111,7 +111,7 @@
     temperatureLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
         [temperatureLabel.topAnchor constraintEqualToAnchor:windAndPressureLabel.topAnchor constant:-20-temperatureLabelSize],
-        [temperatureLabel.leftAnchor constraintEqualToAnchor:self.header.leftAnchor constant:leftIndent]
+        [temperatureLabel.leadingAnchor constraintEqualToAnchor:self.header.safeAreaLayoutGuide.leadingAnchor constant:leftIndent]
     ]];
 
     UILabel *conditionsLabel = [[UILabel alloc] init];
@@ -123,7 +123,7 @@
     conditionsLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
         [conditionsLabel.topAnchor constraintEqualToAnchor:windAndPressureLabel.topAnchor constant:-140],
-        [conditionsLabel.leftAnchor constraintEqualToAnchor:self.header.leftAnchor constant:60]
+        [conditionsLabel.leadingAnchor constraintEqualToAnchor:self.header.safeAreaLayoutGuide.leadingAnchor constant:60]
     ]];
 
     UIImageView *iconView = [[UIImageView alloc] init];
@@ -133,7 +133,7 @@
     [self.header addSubview:iconView];
     iconView.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
-        [iconView.leftAnchor constraintEqualToAnchor:self.header.leftAnchor constant:leftIndent],
+        [iconView.leadingAnchor constraintEqualToAnchor:self.header.safeAreaLayoutGuide.leadingAnchor constant:leftIndent],
         [iconView.topAnchor constraintEqualToAnchor:conditionsLabel.topAnchor constant:-5]
     ]];
     
