@@ -14,6 +14,6 @@
 -(NSDictionary *) getDateForecast:(NSInteger) day;
 -(NSDictionary *) getTimeForecast:(NSInteger) hour;
 
-- (instancetype)initWithJSON:(NSDictionary*)json;
+-(instancetype)initWithJSON:(NSDictionary*)json;
 
 @end

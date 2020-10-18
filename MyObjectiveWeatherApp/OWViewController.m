@@ -10,14 +10,20 @@
 #import "UIImageView+LBBlurredImage.h"
 #import "OWWeatherModel.h"
 #import "APIManager.h"
+#import "ForecastHeaderView.h"
+#import "ForecastTableViewCell.h"
+#import "Location.h"
 
-@interface OWViewController ()
+@interface OWViewController () <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 @property (nonatomic, strong) UIImageView *blurredImageView;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) APIManager *apiManager;
 @property (nonatomic, strong) UIView *header;
+@property (nonatomic, strong) OWForecastModel *forecast;
+@property (nonatomic, strong) Location *location;
 
 @end
 
@@ -27,12 +33,16 @@
     self = [super initWithCoder:coder];
     if (self) {
         self.apiManager = [[APIManager alloc] initWithJSON:[NetworkClient alloc]];
+        self.location = [[Location alloc] init];
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [self.location locationManager];
+    [[self.location locationManager] requestAlwaysAuthorization];
 
     UIImage *backgroundImage = [UIImage imageNamed:@"SaintPetersburg"];
 
@@ -61,11 +71,8 @@
         [self.tableView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor]
     ]];
     
-    /*
-     1. Несколько методов, в каждый из которых установить необходимый параметер
-     2. Сделать метод configureWithWeather:(OWWeatherModel*)weather;
-     
-     */
+    [self.tableView registerClass:[ForecastHeaderView class] forHeaderFooterViewReuseIdentifier:@"Header"];
+    [self.tableView registerClass:[ForecastTableViewCell class] forCellReuseIdentifier:@"Cell"];
 
     float temperatureLabelSize = 100;
     float textInfoSize = 20;
@@ -78,7 +85,7 @@
     UILabel *cityLabel = [[UILabel alloc] init];
     cityLabel.backgroundColor = [UIColor clearColor];
     cityLabel.textColor = [UIColor whiteColor];
-    cityLabel.text = @"Saint-Petersburg";
+    cityLabel.text = @"loading city...";
     cityLabel.font = [UIFont systemFontOfSize:textInfoSize weight:UIFontWeightLight];
     cityLabel.textAlignment = NSTextAlignmentCenter;
     [self.header addSubview:cityLabel];
@@ -141,12 +148,24 @@
         conditionsLabel.text = weather.conditions;
         iconView.image = [UIImage imageNamed:weather.imageName];
         temperatureLabel.text = [NSString stringWithFormat:@"%ld°", weather.temperature.integerValue - 271];
-        windAndPressureLabel.text = [NSString stringWithFormat:@"wind speed %ld ms / pressure %ld hP", weather.windSpeed.integerValue, weather.pressure.integerValue];
+        windAndPressureLabel.text = [NSString stringWithFormat:@"wind speed %ld ms / pressure %ld hP",
+                                     weather.windSpeed.integerValue, weather.pressure.integerValue];
+        cityLabel.text = [[self.location placemark] administrativeArea];
+    }];
+    
+    __weak OWViewController *weakSelf = self;
+    [self.apiManager getForecastWithCompletionHandler:^(OWForecastModel * _Nonnull forecast) {
+        weakSelf.forecast = forecast;
+//        [weakSelf reloadData];
     }];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
+}
+
+- (void) reloadData {
+//    forEach
 }
 
 #pragma mark - UITableViewDataSource
@@ -156,49 +175,42 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 7;
+    return 6;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    ForecastHeaderView* header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"Header"];
+    if (section == 0) {
+        [header setTitle:@"Hourly Forecast"];
+    } else if (section == 1) {
+        [header setTitle:@"Daily Forecast"];
+    }
+    return header;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 44;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"CellIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
-    if (! cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-    }
-
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
-    cell.textLabel.textColor = [UIColor whiteColor];
-    cell.detailTextLabel.textColor = [UIColor whiteColor];
-
-    if (indexPath.section == 0) { // есть баги
-        if (indexPath.row == 0) {
-            [self configureHeaderCell:cell title:@"Hourly Forecast"];
-        } else {
-            // configurateHourlyCell
-        }
-    }
+    ForecastTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    else if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
-            [self configureHeaderCell:cell title:@"Daily Forecast"];
-        } else {
-        // configurateDailyCell
-        }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (indexPath.section == 1) {
+        NSDictionary *dateForecastDict = [self.forecast getDateForecast:indexPath.item+1];
+        [cell setTitle:dateForecastDict[@"date"]];
+        [cell setTemperatureTitle:[NSString stringWithFormat:@"%@ / %@", dateForecastDict[@"day"], dateForecastDict[@"night"]]];
+        [cell setIconText:dateForecastDict[@"icon"]];
+    }
+    if (indexPath.section == 0) {
+        NSDictionary *timeForecastDict = [self.forecast getTimeForecast:indexPath.item+1];
+        [cell setTitle:timeForecastDict[@"time"]];
+        [cell setTemperatureTitle:[NSString stringWithFormat:@"%@", timeForecastDict[@"temp"]]];
+        [cell setIconText:timeForecastDict[@"icon"]];
     }
 
     return cell;
 }
-
-- (void)configureHeaderCell:(UITableViewCell *)cell title:(NSString *)title {
-    cell.textLabel.font = [UIFont systemFontOfSize:20 weight:UIFontWeightLight];
-    cell.textLabel.text = title;
-    cell.detailTextLabel.text = @"";
-    cell.imageView.image = nil;
-}
-
-// надо подумать как растянуть ячейки на весь экран. 7 для прогноза по часам и 7 для прогноза по дням
 
 #pragma mark - UITableViewDelegate
 
@@ -213,7 +225,11 @@
     self.header.frame = CGRectMake(0, 0, CGRectGetWidth(bounds), CGRectGetHeight(bounds) - self.view.safeAreaInsets.bottom);
 }
 
-// test
-
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat height = scrollView.bounds.size.height;
+    CGFloat position = MAX(scrollView.contentOffset.y, 0.0);
+    CGFloat percent = MIN(position / height, 1.0);
+    self.blurredImageView.alpha = percent;
+}
 
 @end

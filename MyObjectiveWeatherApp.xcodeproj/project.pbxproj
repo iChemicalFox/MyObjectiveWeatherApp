@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		5B1A3C9225226FFA00F68487 /* loading@x2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B1A3C9025226FFA00F68487 /* loading@x2.png */; };
 		5B1A3C9325226FFA00F68487 /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B1A3C9125226FFA00F68487 /* loading.png */; };
-		5B1A3C962524B93400F68487 /* OWHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1A3C952524B93400F68487 /* OWHeaderViewController.m */; };
+		5B1A3C9A2527976400F68487 /* ForecastHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1A3C992527976400F68487 /* ForecastHeaderView.m */; };
+		5B1A3C9E25279E5700F68487 /* ForecastTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1A3C9D25279E5700F68487 /* ForecastTableViewCell.m */; };
+		5B1A3CA1252CC7BF00F68487 /* OWImagesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1A3CA0252CC7BF00F68487 /* OWImagesModel.m */; };
+		5B1A3CA5252F13F500F68487 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1A3CA4252F13F500F68487 /* Location.m */; };
 		5B722E0D24F6A24D00800DE3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B722E0C24F6A24D00800DE3 /* AppDelegate.m */; };
 		5B722E1024F6A24D00800DE3 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B722E0F24F6A24D00800DE3 /* SceneDelegate.m */; };
 		5B722E1324F6A24D00800DE3 /* OWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B722E1224F6A24D00800DE3 /* OWViewController.m */; };
@@ -77,8 +80,14 @@
 		50FBBCD8A09A91228E6B9847 /* Pods_MyObjectiveWeatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyObjectiveWeatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B1A3C9025226FFA00F68487 /* loading@x2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading@x2.png"; sourceTree = "<group>"; };
 		5B1A3C9125226FFA00F68487 /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
-		5B1A3C942524B93400F68487 /* OWHeaderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OWHeaderViewController.h; sourceTree = "<group>"; };
-		5B1A3C952524B93400F68487 /* OWHeaderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OWHeaderViewController.m; sourceTree = "<group>"; };
+		5B1A3C982527976400F68487 /* ForecastHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForecastHeaderView.h; sourceTree = "<group>"; };
+		5B1A3C992527976400F68487 /* ForecastHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForecastHeaderView.m; sourceTree = "<group>"; };
+		5B1A3C9C25279E5700F68487 /* ForecastTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForecastTableViewCell.h; sourceTree = "<group>"; };
+		5B1A3C9D25279E5700F68487 /* ForecastTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForecastTableViewCell.m; sourceTree = "<group>"; };
+		5B1A3C9F252CC7BF00F68487 /* OWImagesModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OWImagesModel.h; sourceTree = "<group>"; };
+		5B1A3CA0252CC7BF00F68487 /* OWImagesModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OWImagesModel.m; sourceTree = "<group>"; };
+		5B1A3CA3252F13F500F68487 /* Location.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		5B1A3CA4252F13F500F68487 /* Location.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		5B722E0824F6A24D00800DE3 /* MyObjectiveWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyObjectiveWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B722E0B24F6A24D00800DE3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5B722E0C24F6A24D00800DE3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -164,6 +173,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B1A3C972527972100F68487 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				5B1A3C982527976400F68487 /* ForecastHeaderView.h */,
+				5B1A3C992527976400F68487 /* ForecastHeaderView.m */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		5B1A3C9B25279E3200F68487 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5B1A3C9C25279E5700F68487 /* ForecastTableViewCell.h */,
+				5B1A3C9D25279E5700F68487 /* ForecastTableViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		5B1A3CA2252F13DC00F68487 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				5B1A3CA3252F13F500F68487 /* Location.h */,
+				5B1A3CA4252F13F500F68487 /* Location.m */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
 		5B722DFF24F6A24D00800DE3 = {
 			isa = PBXGroup;
 			children = (
@@ -189,14 +225,14 @@
 		5B722E0A24F6A24D00800DE3 /* MyObjectiveWeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				5B1A3C9B25279E3200F68487 /* Cell */,
+				5B1A3C972527972100F68487 /* Header */,
 				5B722E0B24F6A24D00800DE3 /* AppDelegate.h */,
 				5B722E0C24F6A24D00800DE3 /* AppDelegate.m */,
 				5B722E0E24F6A24D00800DE3 /* SceneDelegate.h */,
 				5B722E0F24F6A24D00800DE3 /* SceneDelegate.m */,
 				5B722E1124F6A24D00800DE3 /* OWViewController.h */,
 				5B722E1224F6A24D00800DE3 /* OWViewController.m */,
-				5B1A3C942524B93400F68487 /* OWHeaderViewController.h */,
-				5B1A3C952524B93400F68487 /* OWHeaderViewController.m */,
 				5B722EC924F83F5000800DE3 /* Network */,
 				5B722E7F24F6E67000800DE3 /* Images */,
 				5B722E7724F6AF0B00800DE3 /* ImageLibs */,
@@ -284,6 +320,7 @@
 		5B722EC924F83F5000800DE3 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				5B1A3CA2252F13DC00F68487 /* Location */,
 				5BEC8AD8251D0C4F002BBD11 /* Network */,
 				5BEC8AD7251D0C47002BBD11 /* API */,
 				5BEC8AD6251D0C3E002BBD11 /* Models */,
@@ -298,6 +335,8 @@
 				5B722ED424F840CC00800DE3 /* OWWeatherModel.m */,
 				5B722ED92509653500800DE3 /* OWForecastModel.h */,
 				5B722EDA2509653500800DE3 /* OWForecastModel.m */,
+				5B1A3C9F252CC7BF00F68487 /* OWImagesModel.h */,
+				5B1A3CA0252CC7BF00F68487 /* OWImagesModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -544,8 +583,11 @@
 				5B722E1924F6A24D00800DE3 /* MyObjectiveWeatherApp.xcdatamodeld in Sources */,
 				5B722ED524F840CC00800DE3 /* OWWeatherModel.m in Sources */,
 				5B722E1324F6A24D00800DE3 /* OWViewController.m in Sources */,
-				5B1A3C962524B93400F68487 /* OWHeaderViewController.m in Sources */,
 				5B722E7A24F6AF8900800DE3 /* UIImageView+LBBlurredImage.m in Sources */,
+				5B1A3C9A2527976400F68487 /* ForecastHeaderView.m in Sources */,
+				5B1A3CA1252CC7BF00F68487 /* OWImagesModel.m in Sources */,
+				5B1A3C9E25279E5700F68487 /* ForecastTableViewCell.m in Sources */,
+				5B1A3CA5252F13F500F68487 /* Location.m in Sources */,
 				5BEC8ADB251D0C63002BBD11 /* NetworkClient.m in Sources */,
 				5B722E0D24F6A24D00800DE3 /* AppDelegate.m in Sources */,
 				5B722EDB2509653500800DE3 /* OWForecastModel.m in Sources */,
@@ -723,6 +765,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZNG295HF53;
 				INFOPLIST_FILE = MyObjectiveWeatherApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -741,6 +784,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZNG295HF53;
 				INFOPLIST_FILE = MyObjectiveWeatherApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

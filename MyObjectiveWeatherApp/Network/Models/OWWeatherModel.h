@@ -18,6 +18,6 @@
 
 -(NSString *) imageName;
 
-- (instancetype)initWithJSON:(NSDictionary*)json;
+-(instancetype)initWithJSON:(NSDictionary*)json;
 
 @end

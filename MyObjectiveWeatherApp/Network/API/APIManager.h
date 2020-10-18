@@ -10,6 +10,8 @@
 #import "OWWeatherModel.h"
 #import "OWForecastModel.h"
 #import "NetworkClient.h"
+#import <CoreLocation/CoreLocation.h>
+#import "Location.h"
 
 @interface APIManager : NSObject
 
