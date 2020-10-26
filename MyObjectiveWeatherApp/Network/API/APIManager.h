@@ -13,7 +13,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "Location.h"
 
-@interface APIManager : NSObject
+@interface APIManager : NSObject <CLLocationManagerDelegate>
 
 - (instancetype _Nonnull)initWithJSON:(NetworkClient* _Nonnull)client;
 

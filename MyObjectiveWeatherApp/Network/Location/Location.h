@@ -15,6 +15,7 @@
 @property(nonatomic, strong) CLLocation *currentLocation;
 @property(nonatomic, strong) CLPlacemark *placemark;
 @property(nonatomic, strong) CLGeocoder *geocoder;
+@property(nonatomic, assign) CLAuthorizationStatus *status;
 
 - (NSNumber *) getCoordinateLatitide;
 - (NSNumber *) getCoordinateLongitude;

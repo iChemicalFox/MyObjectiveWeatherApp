@@ -16,8 +16,6 @@
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.delegate = self;
         self.locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
-
-        [self.locationManager requestLocation];
     }
     return self;
 }
@@ -26,19 +24,21 @@
     return @(self.currentLocation.coordinate.latitude);
 }
 
+- (NSNumber *) getCoordinateLongitude {
+    return @(self.currentLocation.coordinate.longitude);
+}
+
 - (void) getLocation:(CLLocation *)locations {
-    CLGeocoder *geocoder = [CLGeocoder new];
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation:locations completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
         self.placemark = [placemarks lastObject];
     }];
 }
 
-- (NSNumber *) getCoordinateLongitude {
-    return @(self.currentLocation.coordinate.longitude);
-}
-
 - (void)findCurrentLocation {
+    [self.locationManager requestLocation];
     [self.locationManager startUpdatingLocation];
+    
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {

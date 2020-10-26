@@ -19,6 +19,11 @@
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 @property (nonatomic, strong) UIImageView *blurredImageView;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UILabel *cityLabel;
+@property (nonatomic, strong) UILabel *windAndPressureLabel;
+@property (nonatomic, strong) UILabel *temperatureLabel;
+@property (nonatomic, strong) UILabel *conditionsLabel;
+@property (nonatomic, strong) UIImageView *iconView;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) APIManager *apiManager;
 @property (nonatomic, strong) UIView *header;
@@ -41,7 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.location locationManager];
+    [self.location findCurrentLocation];
     [[self.location locationManager] requestAlwaysAuthorization];
 
     UIImage *backgroundImage = [UIImage imageNamed:@"SaintPetersburg"];
@@ -82,82 +87,86 @@
     self.header.backgroundColor = [UIColor clearColor];
     self.tableView.tableHeaderView = self.header;
 
-    UILabel *cityLabel = [[UILabel alloc] init];
-    cityLabel.backgroundColor = [UIColor clearColor];
-    cityLabel.textColor = [UIColor whiteColor];
-    cityLabel.text = @"loading city...";
-    cityLabel.font = [UIFont systemFontOfSize:textInfoSize weight:UIFontWeightLight];
-    cityLabel.textAlignment = NSTextAlignmentCenter;
-    [self.header addSubview:cityLabel];
-    cityLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.cityLabel = [[UILabel alloc] init];
+    self.cityLabel.backgroundColor = [UIColor clearColor];
+    self.cityLabel.textColor = [UIColor whiteColor];
+    self.cityLabel.text = @"loading city...";
+    self.cityLabel.font = [UIFont systemFontOfSize:textInfoSize weight:UIFontWeightLight];
+    self.cityLabel.textAlignment = NSTextAlignmentCenter;
+    [self.header addSubview:self.cityLabel];
+    self.cityLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
-        [cityLabel.topAnchor constraintEqualToAnchor:self.header.topAnchor constant:20],
-        [cityLabel.leadingAnchor constraintEqualToAnchor:self.header.safeAreaLayoutGuide.leadingAnchor],
-        [cityLabel.trailingAnchor constraintEqualToAnchor:self.header.safeAreaLayoutGuide.trailingAnchor]
+        [self.cityLabel.topAnchor constraintEqualToAnchor:self.header.topAnchor constant:20],
+        [self.cityLabel.leadingAnchor constraintEqualToAnchor:self.header.safeAreaLayoutGuide.leadingAnchor],
+        [self.cityLabel.trailingAnchor constraintEqualToAnchor:self.header.safeAreaLayoutGuide.trailingAnchor]
     ]];
 
-    UILabel *windAndPressureLabel = [[UILabel alloc] init];
-    windAndPressureLabel.backgroundColor = [UIColor clearColor];
-    windAndPressureLabel.textColor = [UIColor whiteColor];
-    windAndPressureLabel.text = @"wind speed 0 ms / pressure 0 hPa";
-    windAndPressureLabel.font = [UIFont systemFontOfSize:textInfoSize weight:UIFontWeightLight];
-    [self.header addSubview:windAndPressureLabel];
-    windAndPressureLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.windAndPressureLabel = [[UILabel alloc] init];
+    self.windAndPressureLabel.backgroundColor = [UIColor clearColor];
+    self.windAndPressureLabel.textColor = [UIColor whiteColor];
+    self.windAndPressureLabel.text = @"wind speed 0 ms / pressure 0 hPa";
+    self.windAndPressureLabel.font = [UIFont systemFontOfSize:textInfoSize weight:UIFontWeightLight];
+    [self.header addSubview:self.windAndPressureLabel];
+    self.windAndPressureLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
-        [windAndPressureLabel.bottomAnchor constraintEqualToAnchor:self.header.safeAreaLayoutGuide.bottomAnchor constant:-30],
-        [windAndPressureLabel.leadingAnchor constraintEqualToAnchor:self.header.safeAreaLayoutGuide.leadingAnchor constant:leftIndent],
-        [windAndPressureLabel.trailingAnchor constraintLessThanOrEqualToAnchor:self.header.trailingAnchor constant:-20]
+        [self.windAndPressureLabel.bottomAnchor constraintEqualToAnchor:self.header.safeAreaLayoutGuide.bottomAnchor constant:-30],
+        [self.windAndPressureLabel.leadingAnchor constraintEqualToAnchor:self.header.safeAreaLayoutGuide.leadingAnchor constant:leftIndent],
+        [self.windAndPressureLabel.trailingAnchor constraintLessThanOrEqualToAnchor:self.header.trailingAnchor constant:-20]
     ]];
 
-    UILabel *temperatureLabel = [[UILabel alloc] init];
-    temperatureLabel.backgroundColor = [UIColor clearColor];
-    temperatureLabel.textColor = [UIColor whiteColor];
-    temperatureLabel.text = @"0°";
-    temperatureLabel.font = [UIFont systemFontOfSize:temperatureLabelSize weight:UIFontWeightUltraLight];
-    [self.header addSubview:temperatureLabel];
-    temperatureLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.temperatureLabel = [[UILabel alloc] init];
+    self.temperatureLabel.backgroundColor = [UIColor clearColor];
+    self.temperatureLabel.textColor = [UIColor whiteColor];
+    self.temperatureLabel.text = @"0°";
+    self.temperatureLabel.font = [UIFont systemFontOfSize:temperatureLabelSize weight:UIFontWeightUltraLight];
+    [self.header addSubview:self.temperatureLabel];
+    self.temperatureLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
-        [temperatureLabel.topAnchor constraintEqualToAnchor:windAndPressureLabel.topAnchor constant:-20-temperatureLabelSize],
-        [temperatureLabel.leadingAnchor constraintEqualToAnchor:self.header.safeAreaLayoutGuide.leadingAnchor constant:leftIndent]
+        [self.temperatureLabel.topAnchor constraintEqualToAnchor:self.windAndPressureLabel.topAnchor constant:-20-temperatureLabelSize],
+        [self.temperatureLabel.leadingAnchor constraintEqualToAnchor:self.header.safeAreaLayoutGuide.leadingAnchor constant:leftIndent]
     ]];
 
-    UILabel *conditionsLabel = [[UILabel alloc] init];
-    conditionsLabel.backgroundColor = [UIColor clearColor];
-    conditionsLabel.font = [UIFont systemFontOfSize:textInfoSize weight:UIFontWeightLight];
-    conditionsLabel.textColor = [UIColor whiteColor];
-    conditionsLabel.text = @"waiting for condition";
-    [self.header addSubview:conditionsLabel];
-    conditionsLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.conditionsLabel = [[UILabel alloc] init];
+    self.conditionsLabel.backgroundColor = [UIColor clearColor];
+    self.conditionsLabel.font = [UIFont systemFontOfSize:textInfoSize weight:UIFontWeightLight];
+    self.conditionsLabel.textColor = [UIColor whiteColor];
+    self.conditionsLabel.text = @"waiting for condition";
+    [self.header addSubview:self.conditionsLabel];
+    self.conditionsLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
-        [conditionsLabel.topAnchor constraintEqualToAnchor:windAndPressureLabel.topAnchor constant:-140],
-        [conditionsLabel.leadingAnchor constraintEqualToAnchor:self.header.safeAreaLayoutGuide.leadingAnchor constant:60]
+        [self.conditionsLabel.topAnchor constraintEqualToAnchor:self.windAndPressureLabel.topAnchor constant:-140],
+        [self.conditionsLabel.leadingAnchor constraintEqualToAnchor:self.header.safeAreaLayoutGuide.leadingAnchor constant:60]
     ]];
 
-    UIImageView *iconView = [[UIImageView alloc] init];
-    iconView.contentMode = UIViewContentModeScaleAspectFit;
-    iconView.backgroundColor = [UIColor clearColor];
-    iconView.image = [UIImage imageNamed:@"loading"];
-    [self.header addSubview:iconView];
-    iconView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.iconView = [[UIImageView alloc] init];
+    self.iconView.contentMode = UIViewContentModeScaleAspectFit;
+    self.iconView.backgroundColor = [UIColor clearColor];
+    self.iconView.image = [UIImage imageNamed:@"loading"];
+    [self.header addSubview:self.iconView];
+    self.iconView.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
-        [iconView.leadingAnchor constraintEqualToAnchor:self.header.safeAreaLayoutGuide.leadingAnchor constant:leftIndent],
-        [iconView.topAnchor constraintEqualToAnchor:conditionsLabel.topAnchor constant:-5]
+        [self.iconView.leadingAnchor constraintEqualToAnchor:self.header.safeAreaLayoutGuide.leadingAnchor constant:leftIndent],
+        [self.iconView.topAnchor constraintEqualToAnchor:self.conditionsLabel.topAnchor constant:-5]
     ]];
-    
-    [self.apiManager getWeatherWithCompletionHandler:^(OWWeatherModel * _Nonnull weather) {
-        conditionsLabel.text = weather.conditions;
-        iconView.image = [UIImage imageNamed:weather.imageName];
-        temperatureLabel.text = [NSString stringWithFormat:@"%ld°", weather.temperature.integerValue - 271];
-        windAndPressureLabel.text = [NSString stringWithFormat:@"wind speed %ld ms / pressure %ld hP",
-                                     weather.windSpeed.integerValue, weather.pressure.integerValue];
-        cityLabel.text = [[self.location placemark] administrativeArea];
-    }];
-    
-    __weak OWViewController *weakSelf = self;
-    [self.apiManager getForecastWithCompletionHandler:^(OWForecastModel * _Nonnull forecast) {
-        weakSelf.forecast = forecast;
-//        [weakSelf reloadData];
-    }];
+}
+
+-(void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+        [self.apiManager getWeatherWithCompletionHandler:^(OWWeatherModel * _Nonnull weather) {
+            self.conditionsLabel.text = weather.conditions;
+            self.iconView.image = [UIImage imageNamed:weather.imageName];
+            self.temperatureLabel.text = [NSString stringWithFormat:@"%ld°", weather.temperature.integerValue - 271];
+            self.windAndPressureLabel.text = [NSString stringWithFormat:@"wind speed %ld ms / pressure %ld hP",
+                                         weather.windSpeed.integerValue, weather.pressure.integerValue];
+            self.cityLabel.text = [[self.location placemark] administrativeArea];
+        }];
+        
+        __weak OWViewController *weakSelf = self;
+        [self.apiManager getForecastWithCompletionHandler:^(OWForecastModel * _Nonnull forecast) {
+            weakSelf.forecast = forecast;
+    //        [weakSelf reloadData];
+        }];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

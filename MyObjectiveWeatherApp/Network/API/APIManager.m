@@ -9,9 +9,9 @@
 #import "APIManager.h"
 #import "NetworkClient.h"
 
-@interface APIManager () <CLLocationManagerDelegate>
+@interface APIManager () <CLLocationManagerDelegate, CLLocationManagerDelegate>
 
-@property(nonatomic, strong) NetworkClient *networkClient;
+@property (nonatomic, strong) NetworkClient *networkClient;
 @property (nonatomic, strong) Location *location;
 
 @end
@@ -31,8 +31,9 @@
 - (void)getWeatherWithCompletionHandler:(void (^)(OWWeatherModel * _Nonnull weather))completionHandler {
 
     NSString *urlString = [NSString stringWithFormat:@"https://api.openweathermap.org/data/2.5/weather?id=498817&appid=9934278765103a1603d5ae8bfa6d3e91"/*, _city*/];
-//    NSString *latitide = [NSString stringWithFormat:@"%@", [self.location getCoordinateLatitide]];
-//    NSString *longitude = [NSString stringWithFormat:@"%@", [self.location getCoordinateLongitude]];
+    NSString *city = [[self.location placemark] administrativeArea];
+    NSString *latitide = [NSString stringWithFormat:@"%@", [self.location getCoordinateLatitide]];
+    NSString *longitude = [NSString stringWithFormat:@"%@", [self.location getCoordinateLongitude]];
 //    NSString *urlString = [NSString
 //                           stringWithFormat:@"https://api.openweathermap.org/data/2.5/weather?lat={%@}&lon={%@}&appid=9934278765103a1603d5ae8bfa6d3e91",
 //                           latitide, longitude /*lat and lon*/];
